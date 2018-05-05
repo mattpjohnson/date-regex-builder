@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "Easily build date regular expressions",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
-    "precommit": "lint-staged",
+    "build": "tsc",
+    "precommit": "lint-staged && npm run build",
     "prepush": "npm test",
     "prepublish": "npm test"
   },
@@ -40,7 +42,7 @@
     ]
   },
   "lint-staged": {
-    "**/*.{ts,tsx}": [
+    "src/*.{ts,tsx}": [
       "prettier --trailing-comma es5 --write",
       "git add"
     ]

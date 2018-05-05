@@ -1,27 +1,30 @@
-const TokenToRegexLookup = {
-    YY: "\\d{2}",
-    YYYY: "\\d{4}",
-    M: "([1-9]|1[0-2])",
-    MM: "(0[1-9]|1[0-2])",
-    MMM: "(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)",
+const TokenToRegexLookup: { [token: string]: string } = {
+    YY: '\\d{2}',
+    YYYY: '\\d{4}',
+    M: '([1-9]|1[0-2])',
+    MM: '(0[1-9]|1[0-2])',
+    MMM: '(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)',
     MMMM:
-        "(January|February|March|April|May|June|July|August|September|October|November|December)",
-    D: "([1-9]|[1-2][0-9]|3[0-1])",
-    DD: "(0[1-9]|[1-2][0-9]|3[0-1])",
+        '(January|February|March|April|May|June|July|August|September|October|November|December)',
+    D: '([1-9]|[1-2][0-9]|3[0-1])',
+    DD: '(0[1-9]|[1-2][0-9]|3[0-1])',
 };
 
-type SupportedLocale = "en" | "es";
+type SupportedLocale = 'en' | 'es';
 
 export const DateRegexBuilder = {
-    pure(str: string, { formatter, tokenizer }) {
+    pure(
+        str: string,
+        { formatter, tokenizer }: { formatter: Function; tokenizer: Function }
+    ) {
         return DateRegexBuilder.tokens(tokenizer(str), { formatter });
     },
-    tokens(tokens: Array<string>, { formatter }) {
-        return tokens.map(token => formatter(token)).join("");
+    tokens(tokens: Array<string>, { formatter }: { formatter: Function }) {
+        return tokens.map(token => formatter(token)).join('');
     },
     offsetTokenizer(offsets: Array<[number, number]>) {
-        return string =>
-            offsets.map(([start, finish]) => string.slice(start, finish));
+        return (str: string) =>
+            offsets.map(([start, finish]) => str.slice(start, finish));
     },
     formatter(locale: SupportedLocale) {
         return function(token: string) {
@@ -34,8 +37,8 @@ export const DateRegexBuilder = {
     },
 };
 
-const result = DateRegexBuilder.pure("MMM D, YYYY", {
-    formatter: DateRegexBuilder.formatter("en"),
+const result = DateRegexBuilder.pure('MMM D, YYYY', {
+    formatter: DateRegexBuilder.formatter('en'),
     tokenizer: DateRegexBuilder.offsetTokenizer([
         [0, 3],
         [3, 4],
@@ -44,3 +47,7 @@ const result = DateRegexBuilder.pure("MMM D, YYYY", {
         [7, 11],
     ]),
 });
+
+if (typeof window !== 'undefined') {
+    (window as any).DateRegexBuilder = DateRegexBuilder;
+}
