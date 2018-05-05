@@ -5,9 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
-    "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "precommit": "lint-staged",
-    "prepush": "npm test"
+    "prepush": "npm test",
+    "prepublish": "npm test"
   },
   "author": "Matt Johnson <hello@mattpjohnson.com>",
   "license": "MIT",
