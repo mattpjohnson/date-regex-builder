@@ -47,7 +47,3 @@ const result = DateRegexBuilder.pure('MMM D, YYYY', {
         [7, 11],
     ]),
 });
-
-if (typeof window !== 'undefined') {
-    (window as any).DateRegexBuilder = DateRegexBuilder;
-}
