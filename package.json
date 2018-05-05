@@ -1,0 +1,38 @@
+{
+  "name": "date-regex-builder",
+  "version": "1.0.0",
+  "description": "Easily build date regular expressions",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "precommit": "lint-staged"
+  },
+  "author": "Matt Johnson <hello@mattpjohnson.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "jest": "^22.4.3",
+    "lint-staged": "^7.0.5",
+    "prettier": "^1.12.1",
+    "typescript": "^2.8.3"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/preprocessor.js"
+    },
+    "testMatch": [
+      "**/__tests__/*.+(ts|tsx|js)"
+    ]
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "prettier --trailing-comma es5 --write",
+      "git add"
+    ]
+  }
+}
