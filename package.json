@@ -1,56 +1,22 @@
 {
-  "name": "date-regex-builder",
+  "name": "date-regex-builder-gh-pages",
   "version": "1.0.0",
-  "description": "Easily build date regular expressions",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "build": "tsc",
-    "precommit": "lint-staged && npm run build",
-    "prepush": "npm test",
-    "prepublish": "npm test"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Matt Johnson <hello@mattpjohnson.com>",
-  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mattpjohnson/date-regex-builder.git"
+    "url": "git+https://github.com/mattpjohnson/date-regex-builder.git"
   },
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/mattpjohnson/date-regex-builder/issues"
   },
-  "files": [
-      "dist"
-  ],
-  "devDependencies": {
-    "coveralls": "^3.0.1",
-    "husky": "^0.14.3",
-    "jest": "^22.4.3",
-    "lint-staged": "^7.0.5",
-    "prettier": "^1.12.1",
-    "typescript": "^2.8.3"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "transform": {
-      "^.+\\.(ts|tsx)$": "<rootDir>/preprocessor.js"
-    },
-    "testMatch": [
-      "**/__tests__/*.+(ts|tsx|js)"
-    ]
-  },
-  "lint-staged": {
-    "src/*.{ts,tsx}": [
-      "prettier --trailing-comma es5 --write",
-      "git add"
-    ]
-  },
-  "prettier": {
-    "singleQuote": true
+  "homepage": "https://github.com/mattpjohnson/date-regex-builder#readme",
+  "dependencies": {
+    "date-regex-builder": "^0.1.0"
   }
 }
