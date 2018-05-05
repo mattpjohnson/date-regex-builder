@@ -12,12 +12,9 @@ const TokenToRegexLookup = {
 
 type SupportedLocale = "en" | "es";
 
-const drb = {
-    defaultConfig: {
-        // tokenizer: tokenizer([[0, 2], [2, 3], [3, 5], [5, 6], [6, 10]])
-    },
+export const DateRegexBuilder = {
     pure(str: string, { formatter, tokenizer }) {
-        return drb.tokens(tokenizer(str), { formatter });
+        return DateRegexBuilder.tokens(tokenizer(str), { formatter });
     },
     tokens(tokens: Array<string>, { formatter }) {
         return tokens.map(token => formatter(token)).join("");
@@ -37,9 +34,13 @@ const drb = {
     },
 };
 
-const result = drb.pure("MMM D, YYYY", {
-    formatter: drb.formatter("en"),
-    tokenizer: drb.offsetTokenizer([[0, 3], [3, 4], [4, 5], [5, 7], [7, 11]]),
+const result = DateRegexBuilder.pure("MMM D, YYYY", {
+    formatter: DateRegexBuilder.formatter("en"),
+    tokenizer: DateRegexBuilder.offsetTokenizer([
+        [0, 3],
+        [3, 4],
+        [4, 5],
+        [5, 7],
+        [7, 11],
+    ]),
 });
-
-export { drb as DateRegexBuilder };
